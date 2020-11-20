@@ -1,0 +1,64 @@
+h1 {
+  font-family: "Gotham Book Regular";
+  font-size: 60px;
+}
+
+h2 {
+  font-family: "Gotham Extra Light";
+  font-size: 45px;
+}
+
+.title {
+  text-align: center;
+  color: whitesmoke;
+  margin-top: 200px;
+}
+
+.content {
+  background-color: #C56C86;
+  height: 600px;
+  margin: 100px;
+  margin-bottom: 50px;
+  border-radius: 15px;
+}
+
+.calculate-button {
+  background-color: #725A7A;
+  height: 50px;
+  margin: 100px;
+  margin-top: 0;
+  border-radius: 15px;
+  color: whitesmoke;
+  font-family: "Gotham Book Regular";
+  font-weight: bolder;
+  font-size: 30px;
+  text-align: center;
+  padding-top: 15px;
+}
+
+.footer {
+  align-items: center;
+
+
+  font-family: "Gotham Extra Light";
+  font-size: 15px;
+
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  background-color: #3a5070;
+  color: whitesmoke;
+  text-align: center;
+}
+a:visited {
+  color: #FF7582;
+}
+
+/*background-color: #2a3950*/
+
+
+/*color: #FF7582*/
+/*color: #C56C86*/
+/*color: #725A7A*/
+/*color: #355C7D*/

@@ -1,0 +1,11 @@
+body {
+  background-color: #2a3950;
+}
+@font-face {
+  font-family: Gotham Book Regular;
+  src: url(assets/fonts/Gotham_Book_Regular.otf) format("opentype");
+}
+@font-face {
+  font-family: Gotham Extra Light;
+  src: url(assets/fonts/Gotham_Extra_Light.otf) format("opentype");
+}
