@@ -16,24 +16,56 @@ h2 {
 
 .content {
   background-color: #C56C86;
+  color: whitesmoke;
+  font-family: "Gotham Book Regular";
   height: 600px;
-  margin: 100px;
+  margin: 47px;
   margin-bottom: 50px;
   border-radius: 15px;
+  padding: 50px;
 }
 
 .calculate-button {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+
   background-color: #725A7A;
   height: 50px;
-  margin: 100px;
+  width:300px;
   margin-top: 0;
+  margin-bottom: 100px;
   border-radius: 15px;
   color: whitesmoke;
   font-family: "Gotham Book Regular";
   font-weight: bolder;
   font-size: 30px;
   text-align: center;
-  padding-top: 15px;
+  border:none;
+  outline: 0;
+  transition: .2s;
+}
+
+.calculate-button:before {
+  transform: scale(1.2);
+  box-shadow: 0 0 15px #FF7582;
+  filter: blur(3px);
+  transition: .2s;
+  transform: scale(.9);
+  z-index: -1;
+}
+
+.calculate-button:hover:before {
+  transform: scale(1.2);
+  box-shadow: 0 0 15px #FF7582;
+  filter: blur(3px);
+}
+
+.calculate-button:hover {
+  cursor: pointer;
+  background-color: #725A7A;
+  box-shadow: 0 0 15px #FF7582;
+  transform: scale(1.05);
 }
 
 .footer {
@@ -54,7 +86,17 @@ h2 {
 a:visited {
   color: #FF7582;
 }
-
+.table {
+  margin-top: 25px;
+  font-family: "Gotham Book Regular";
+  font-size: 20px;
+  background: none;
+}
+.form-control:focus {
+  caret-color: #725A7A;
+  border-color: #FF7582;
+  box-shadow: inset 0 100px 100px rgba(0, 0, 0, 0.075), 0 0 15px #FF7582;
+}
 /*background-color: #2a3950*/
 
 

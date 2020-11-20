@@ -5,21 +5,77 @@
   </div>
 
   <div class="content" role="main">
-    <span></span>
+    <h3>Wypełnij tabele</h3>
+      <table class="table table-bordered table-responsive-md">
+        <thead>
+        <tr>
+          <th colspan="2"></th>
+          <th scope="col">Odbiorca 1</th>
+          <th scope="col">Odbiorca 2</th>
+        </tr>
+        <tr>
+          <th scope="col" colspan="2" style="text-align: right">Podaz\Popyt</th>
+          <th scope="col">
+            <input type="number" class="form-control" placeholder="Popyt 1" id="popyt1" [(ngModel)]="popyt1" required>
+          </th>
+          <th scope="col">
+            <input type="number" class="form-control" placeholder="Popyt 2" id="popyt2" [(ngModel)]="popyt2" required>
+          </th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+          <th scope="row">Dostawca 1</th>
+          <td>
+            <input type="number" class="form-control" placeholder="Podaz 1" id="podaz1" [(ngModel)]="podaz1" required>
+          </td>
+          <td>
+            <input type="number" class="form-control" placeholder="Liczba 1->1" id="liczba11" [(ngModel)]="liczba11" required>
+          </td>
+          <td>
+            <input type="number" class="form-control" placeholder="Liczba 1->2" id="liczba12" [(ngModel)]="liczba12" required>
+          </td>
+        </tr>
+        <tr>
+          <th scope="row">Dostawca 2</th>
+          <td>
+            <input type="number" class="form-control" placeholder="Podaz 2" id="podaz2" [(ngModel)]="podaz2" required>
+          </td>
+          <td>
+            <input type="number" class="form-control" placeholder="Liczba 2->1" id="liczba21" [(ngModel)]="liczba21"required>
+          </td>
+          <td>
+            <input type="number" class="form-control" placeholder="Liczba 2->2" id="liczba22" [(ngModel)]="liczba22"required>
+          </td>
+        </tr>
+        <tr>
+          <th scope="row">Dostawca 3</th>
+          <td>
+            <input type="number" class="form-control" placeholder="Podaz 3" id="podaz3" [(ngModel)]="podaz3" required>
+          </td>
+          <td>
+            <input type="number" class="form-control" placeholder="Liczba 3->1" id="liczba31" [(ngModel)]="liczba31" required>
+          </td>
+          <td>
+            <input type="number" class="form-control" placeholder="Liczba 3->2" id="liczba32" [(ngModel)]="liczba32" required>
+          </td>
+        </tr>
+        </tbody>
+      </table>
   </div>
 
-  <div class="calculate-button">
-    <div class="calculate-text">Calculate!</div>
-  </div>
+  <button class="calculate-button" type="submit" (click)="calculate()">
+    <div class="calculate-text">Oblicz!</div>
+  </button>
+</div>
 
-  <!-- Footer -->
-  <div class="footer">
-    <p>2020 © Copyrights - Mariusz Dadun, Tomasz Dudek
-      <a href="https://github.com/dudek-tomasz/university-boil-project1" target="_blank" rel="noopener"> |Kod
-        źródłowy
-        aplikacji|
-      </a>
-    </p>
-  </div>
+<!-- Footer -->
+<div class="footer">
+  <p>2020 © Copyrights - Mariusz Dadun, Tomasz Dudek
+    <a href="https://github.com/dudek-tomasz/university-boil-project1" target="_blank" rel="noopener"> |Kod
+      źródłowy
+      aplikacji|
+    </a>
+  </p>
 </div>
 <router-outlet></router-outlet>
