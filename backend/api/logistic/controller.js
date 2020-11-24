@@ -17,6 +17,17 @@ module.exports = function (router) {
             let keyPair = key.split("|");
             model.transport(keyPair[0], keyPair[1], value);
         }
-        res.send( JSON.stringify(solver.Solve(model)))
+        let solverData = solver.Solve(model)
+        let result = {income: 0, cost: 0, transport: 0, result: solverData.result, trans: {}};
+        for (const [key, value] of Object.entries(solverData)) {
+            let keyPair = key.split("|");
+            if (keyPair.length > 1) {
+                result.income += value * parsedData["cenasprz"][keyPair[1]];
+                result.cost += value * parsedData["cenazak"][keyPair[0]];
+                result.transport += value * parsedData["trans"][key];
+                result.trans[key] = value;
+            }
+        }
+        res.send(JSON.stringify(result));
     })
 };
