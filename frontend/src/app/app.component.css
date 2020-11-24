@@ -97,6 +97,10 @@ a:visited {
   border-color: #FF7582;
   box-shadow: inset 0 100px 100px rgba(0, 0, 0, 0.075), 0 0 15px #FF7582;
 }
+.loading {
+  color: #FF7582;
+}
+
 /*background-color: #2a3950*/
 
 
