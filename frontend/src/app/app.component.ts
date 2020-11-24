@@ -67,10 +67,12 @@ export class AppComponent {
     };
     this.obliczone = true;
     // @ts-ignore
-    this.http.get('http://localhost:6969/api/logistic?').subscribe((data : Wynik)=>{
+    this.http.get('http://localhost:6969/api/logistic?q='+JSON.stringify(this.dane)).subscribe((data : Wynik)=>{
       this.wynik = data;
     });
     console.log('http://localhost:6969/api/logistic?q='+JSON.stringify(this.dane));
-    console.log('wynik: '+this.wynik);
+    setTimeout(() => {
+      console.log('wynik: '+JSON.stringify(this.wynik));
+    }, 1000);
   }
 }
