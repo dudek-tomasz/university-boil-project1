@@ -27,12 +27,12 @@ class Project2Model {
         }
     }
 
-    arrow(nodeInName, nodeOutName, cost, constraint = {}) {
-        let variableName = nodeInName + "_" + nodeOutName;
-        let constraintName = variableName + "c";
+    arrow(name, cost, constraint = {}) {
+        let nodes = name.split("_");
+        let constraintName = name + "c";
         this.constraints[constraintName] = constraint;
-        this.variables[variableName] = {cost: cost, [nodeInName]: -1, [nodeOutName]: 1, [constraintName]: 1};
-        this.ints[variableName] = 1;
+        this.variables[name] = {cost: cost, [nodes[0]]: -1, [nodes[1]]: 1, [constraintName]: 1};
+        this.ints[name] = 1;
     }
 
     build() {
