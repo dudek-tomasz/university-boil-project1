@@ -7,26 +7,24 @@ class Project2Model {
     totalMaxIn = 0;
     totalMaxOut = 0;
 
-    node(name) {
+    node(name, inOut = {}) {
         this.constraints[name] = {min: 0, max: 0};
-    }
-
-    inNode(name, maxIn) {
-        this.node(name);
-        let constraintName = name + "c";
-        this.constraints[constraintName] = {max: maxIn};
-        this.totalMaxIn += maxIn;
-        this.variables[name] = {[constraintName]: 1, [name]: 1, in: 1};
-        this.ints[constraintName] = 1;
-    }
-
-    outNode(name, maxOut) {
-        this.node(name);
-        let constraintName = name + "c";
-        this.constraints[constraintName] = {max: maxOut};
-        this.totalMaxOut += maxOut;
-        this.variables[name] = {[constraintName]: 1, [name]: -1, out: 1};
-        this.ints[constraintName] = 1;
+        if ("in" in inOut) {
+            let variableName = "a" + name
+            let constraintName = variableName + "in";
+            this.constraints[constraintName] = {max: inOut.in};
+            this.totalMaxIn += inOut.in;
+            this.variables[variableName] = {[constraintName]: 1, [name]: 1, in: 1};
+            this.ints[constraintName] = 1;
+        }
+        if ("out" in inOut) {
+            let variableName = "b" + name
+            let constraintName = variableName + "out";
+            this.constraints[constraintName] = {max: inOut.out};
+            this.totalMaxOut += inOut.out;
+            this.variables[variableName] = {[constraintName]: 1, [name]: -1, out: 1};
+            this.ints[constraintName] = 1;
+        }
     }
 
     arrow(nodeInName, nodeOutName, cost, constraint = {}) {
@@ -38,7 +36,7 @@ class Project2Model {
     }
 
     build() {
-        if (this.totalMaxOut > this.totalMaxIn){
+        if (this.totalMaxOut > this.totalMaxIn) {
             this.constraints.in = {"min": this.totalMaxIn}
         } else {
             this.constraints.out = {"min": this.totalMaxOut}
