@@ -1,0 +1,68 @@
+h1 {
+  font-family: "Gotham Book Regular";
+  font-size: 40px;
+}
+
+h2 {
+  font-family: "Gotham Extra Light";
+  font-size: 45px;
+}
+h4 {
+  font-family: "Gotham Book Regular";
+  font-size: 15px;
+}
+
+.title {
+  text-align: center;
+  color: whitesmoke;
+  margin-top: 100px;
+}
+
+.content {
+  background-color: #C56C86;
+  color: whitesmoke;
+  font-family: "Gotham Book Regular";
+  border-radius: 15px;
+  padding: 25px;
+  margin-top: -890px;
+}
+
+
+.go-back-button {
+  display: block;
+  position: absolute;
+  top:0%;
+  left:0%;
+  margin: 15px;
+
+  color: #725A7A;
+  border:none;
+  outline: 0;
+  transition: .2s;
+}
+
+.go-back-button:before {
+  transform: scale(1.2);
+  box-shadow: 0 0 15px #FF7582;
+  filter: blur(3px);
+  transition: .2s;
+  transform: scale(.9);
+  z-index: -1;
+}
+
+.go-back-button:hover:before {
+  transform: scale(1.2);
+  filter: blur(3px);
+}
+
+.go-back-button:hover {
+  cursor: pointer;
+  transform: scale(1.05);
+}
+
+.table {
+  margin-top: 10px;
+  font-family: "Gotham Book Regular";
+  font-size: 20px;
+  background: none;
+}

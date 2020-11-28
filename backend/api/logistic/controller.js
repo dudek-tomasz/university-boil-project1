@@ -14,13 +14,19 @@ module.exports = function (router) {
             model.recipient(key, value, parsedData["cenasprz"][key]);
         }
         for (const [key, value] of Object.entries(parsedData["trans"])) {
-            let keyPair = key.split("|");
+            let keyPair = key.split("_");
             model.transport(keyPair[0], keyPair[1], value);
         }
         let solverData = solver.Solve(model)
-        let result = {income: 0, cost: 0, transport: 0, result: solverData.result, trans: {}};
+        let result = {
+            income: 0,
+            cost: 0,
+            transport: 0,
+            result: solverData.result,
+            trans: {d1_o1: 0, d1_o2: 0, d2_o1: 0, d2_o2: 0, d3_o1: 0, d3_o2: 0}
+        };
         for (const [key, value] of Object.entries(solverData)) {
-            let keyPair = key.split("|");
+            let keyPair = key.split("_");
             if (keyPair.length > 1) {
                 result.income += value * parsedData["cenasprz"][keyPair[1]];
                 result.cost += value * parsedData["cenazak"][keyPair[0]];
@@ -28,6 +34,7 @@ module.exports = function (router) {
                 result.trans[key] = value;
             }
         }
+        console.log(JSON.stringify(result));
         res.send(JSON.stringify(result));
     })
 };

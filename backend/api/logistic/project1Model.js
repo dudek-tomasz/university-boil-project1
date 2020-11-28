@@ -18,7 +18,7 @@ class Project1Model {
     }
 
     transport(supplierName, recipientName, transportPrice) {
-        const variableName = supplierName + '|' + recipientName
+        const variableName = supplierName + '_' + recipientName
         this.variables[variableName] = {
             "gain": this.#recipients[recipientName] - parseFloat(transportPrice) - this.#suppliers[supplierName],
             [supplierName]: 1,

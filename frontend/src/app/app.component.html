@@ -9,6 +9,7 @@
       <h2>Zagadnienie pośrednika</h2>
     </div>
   </ng-template>
+
   <div *ngIf="!obliczone; else fadeOutContent" class="content" role="main">
     <h3 class="animate__animated animate__fadeIn">Wypełnij tabele</h3>
     <table class="table table-bordered table-responsive-md animate__animated animate__fadeIn">
@@ -103,18 +104,19 @@
     <div class="content animate__animated animate__fadeOut">
     </div>
   </ng-template>
-  <div *ngIf="wynik" class="loading animate__animated animate__fadeIn m-auto">
-    <i class="fas fa-spinner fa-7x fa-spin"></i>
+  <div *ngIf="obliczone&&!done" class="loading animate__animated animate__fadeIn animate__slow m-auto">
+    <i class="fas fa-spinner fa-9x fa-spin"></i>
   </div>
 
-  <button *ngIf="!obliczone else fadeOutButton" class="calculate-button" type="submit" (click)="calculate()">
+  <button *ngIf="!obliczone && !done" class="calculate-button" type="submit" (click)="calculate()">
     <div class="calculate-text">Oblicz!</div>
   </button>
-  <ng-template #fadeOutButton>
-    <button class="calculate-button animate__animated animate__fadeOutDown" type="submit">
-      <div class="calculate-text">Oblicz!</div>
-    </button>
-  </ng-template>
+<!--  <ng-template #fadeOutButton>-->
+<!--    <div class="calculate-button animate__animated animate__fadeOutDown">-->
+<!--      <div class="calculate-text">Oblicz!</div>-->
+<!--    </div>-->
+<!--  </ng-template>-->
+  <app-result *ngIf="obliczone && done" [result]="wynik" [oldData]="dane"></app-result>
 </div>
 
 <!-- Footer -->
@@ -126,4 +128,4 @@
     </a>
   </p>
 </div>
-<router-outlet></router-outlet>
+
