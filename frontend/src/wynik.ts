@@ -11,4 +11,12 @@ export interface Wynik {
     d3_o1: any,
     d3_o2: any
   };
+  trans2: {
+    d1_o1: any,
+    d1_o2: any,
+    d2_o1: any,
+    d2_o2: any,
+    d3_o1: any,
+    d3_o2: any
+  };
 }

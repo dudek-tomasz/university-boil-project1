@@ -77,6 +77,14 @@ export class AppComponent {
       d2_o2: 0,
       d3_o1: 0,
       d3_o2: 0
+    },
+    trans2: {
+      d1_o1: 0,
+      d1_o2: 0,
+      d2_o1: 0,
+      d2_o2: 0,
+      d3_o1: 0,
+      d3_o2: 0
     }
   };
   isComplete(){
@@ -131,6 +139,7 @@ export class AppComponent {
           d3_o1: this.liczba31,
           d3_o2: this.liczba32
         }
+
       };
       this.obliczone = true;
       // @ts-ignore

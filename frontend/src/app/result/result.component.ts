@@ -20,6 +20,14 @@ export class ResultComponent implements OnInit {
       d2_o2: 0,
       d3_o1: 0,
       d3_o2: 0
+    },
+    trans2: {
+      d1_o1: 0,
+      d1_o2: 0,
+      d2_o1: 0,
+      d2_o2: 0,
+      d3_o1: 0,
+      d3_o2: 0
     }
   };
 
