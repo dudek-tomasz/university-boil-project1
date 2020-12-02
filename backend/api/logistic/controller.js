@@ -23,8 +23,12 @@ module.exports = function (router) {
             cost: 0,
             transport: 0,
             result: solverData.result,
-            trans: {d1_o1: 0, d1_o2: 0, d2_o1: 0, d2_o2: 0, d3_o1: 0, d3_o2: 0}
+            trans: {d1_o1: 0, d1_o2: 0, d2_o1: 0, d2_o2: 0, d3_o1: 0, d3_o2: 0},
+            trans2: {d1_o1: 0, d1_o2: 0, d2_o1: 0, d2_o2: 0, d3_o1: 0, d3_o2: 0}
         };
+        for (const [key, value] of Object.entries(model.variables)) {
+            result.trans2[key] = model.variables[key].gain;
+        }
         for (const [key, value] of Object.entries(solverData)) {
             let keyPair = key.split("_");
             if (keyPair.length > 1) {
@@ -32,6 +36,7 @@ module.exports = function (router) {
                 result.cost += value * parsedData["cenazak"][keyPair[0]];
                 result.transport += value * parsedData["trans"][key];
                 result.trans[key] = value;
+
             }
         }
         console.log(JSON.stringify(result));
