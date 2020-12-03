@@ -7,32 +7,50 @@ class Project2Model {
     totalMaxIn = 0;
     totalMaxOut = 0;
 
-    node(name, inOut = {}) {
-        this.constraints[name] = {min: 0, max: 0};
-        if ("in" in inOut) {
-            let variableName = "a" + name
-            let constraintName = variableName + "in";
-            this.constraints[constraintName] = {max: inOut.in};
-            this.totalMaxIn += inOut.in;
-            this.variables[variableName] = {[constraintName]: 1, [name]: 1, in: 1};
-            this.ints[constraintName] = 1;
-        }
-        if ("out" in inOut) {
-            let variableName = "b" + name
-            let constraintName = variableName + "out";
-            this.constraints[constraintName] = {max: inOut.out};
-            this.totalMaxOut += inOut.out;
-            this.variables[variableName] = {[constraintName]: 1, [name]: -1, out: 1};
-            this.ints[constraintName] = 1;
+    nodes(nodes) {
+        const this_ = this
+        nodes.forEach(function (node) {
+            this_.node(node)
+        });
+    }
+
+    arrows(arrows){
+        const this_ = this
+        arrows.forEach(function(arrow){
+            this_.arrow(arrow)
+        });
+    }
+
+    node(node) {
+        this.constraints[node.name] = {min: 0, max: 0};
+        if ("inOut" in node) {
+            if ("in" in node.inOut) {
+                let variableName = "a" + node.name
+                let constraintName = variableName + "in";
+                this.constraints[constraintName] = {max: node.inOut.in};
+                this.totalMaxIn += node.inOut.in;
+                this.variables[variableName] = {[constraintName]: 1, [node.name]: 1, in: 1};
+                this.ints[constraintName] = 1;
+            }
+            if ("out" in node.inOut) {
+                let variableName = "b" + node.name
+                let constraintName = variableName + "out";
+                this.constraints[constraintName] = {max: node.inOut.out};
+                this.totalMaxOut += node.inOut.out;
+                this.variables[variableName] = {[constraintName]: 1, [node.name]: -1, out: 1};
+                this.ints[constraintName] = 1;
+            }
         }
     }
 
-    arrow(name, cost, constraint = {}) {
-        let nodes = name.split("_");
-        let constraintName = name + "c";
-        this.constraints[constraintName] = constraint;
-        this.variables[name] = {cost: cost, [nodes[0]]: -1, [nodes[1]]: 1, [constraintName]: 1};
-        this.ints[name] = 1;
+    arrow(arrow) {
+        let nodes = arrow.name.split("_");
+        let constraintName = arrow.name + "c";
+        if ("constr" in arrow) {
+            this.constraints[constraintName] = arrow.constr;
+        }
+        this.variables[arrow.name] = {cost: arrow.cost, [nodes[0]]: -1, [nodes[1]]: 1, [constraintName]: 1};
+        this.ints[arrow.name] = 1;
     }
 
     build() {

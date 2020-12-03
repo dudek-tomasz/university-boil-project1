@@ -28,6 +28,7 @@ app.set('trust proxy', true);
 
 app.use('/api', router);
 app.use('/logistic', logistic);
+app.use('/logistic2', logistic);
 
 http.createServer(app).listen(port);
 console.log('### SERVER:\t\t Running on port ' + port);

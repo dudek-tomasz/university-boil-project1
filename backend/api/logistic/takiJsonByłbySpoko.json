@@ -38,7 +38,7 @@
     {
       "name": "1_3",
       "cost": 3,
-      "constraints": {
+      "constr": {
         "min": 30,
         "max": 50
       }
@@ -46,7 +46,7 @@
     {
       "name": "1_6",
       "cost": 5,
-      "constraints": {
+      "constr": {
         "max": 150
       }
     },

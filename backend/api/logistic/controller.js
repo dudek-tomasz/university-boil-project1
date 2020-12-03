@@ -1,5 +1,7 @@
 const LOGISTIC_ENDPOINT = 'logistic';
+const LOGISTIC_ENDPOINT_2 = 'logistic2';
 let Project1Model = require('./project1Model.js');
+const Project2Model = require("./project2Model");
 let solver = require("javascript-lp-solver");
 
 module.exports = function (router) {
@@ -41,5 +43,18 @@ module.exports = function (router) {
         }
         console.log(JSON.stringify(result));
         res.send(JSON.stringify(result));
+    })
+};
+
+module.exports = function (router) {
+    router.get(`/${LOGISTIC_ENDPOINT_2}`, (req, res) => {
+        let parsedData = JSON.parse(req.query.q)
+        let model = new Project2Model();
+        model.nodes(parsedData.nodes)
+        model.arrows(parsedData.arrows)
+        model.build()
+        let solverData = solver.Solve(model)
+        console.log(JSON.stringify(solverData));
+        res.send(JSON.stringify(solverData));
     })
 };
