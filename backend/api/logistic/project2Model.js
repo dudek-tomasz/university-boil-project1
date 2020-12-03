@@ -23,23 +23,21 @@ class Project2Model {
 
     node(node) {
         this.constraints[node.name] = {min: 0, max: 0};
-        if ("inOut" in node) {
-            if ("in" in node.inOut) {
-                let variableName = "a" + node.name
-                let constraintName = variableName + "in";
-                this.constraints[constraintName] = {max: node.inOut.in};
-                this.totalMaxIn += node.inOut.in;
-                this.variables[variableName] = {[constraintName]: 1, [node.name]: 1, in: 1};
-                this.ints[constraintName] = 1;
-            }
-            if ("out" in node.inOut) {
-                let variableName = "b" + node.name
-                let constraintName = variableName + "out";
-                this.constraints[constraintName] = {max: node.inOut.out};
-                this.totalMaxOut += node.inOut.out;
-                this.variables[variableName] = {[constraintName]: 1, [node.name]: -1, out: 1};
-                this.ints[constraintName] = 1;
-            }
+        if ("in" in node) {
+            let variableName = "a" + node.name
+            let constraintName = variableName + "in";
+            this.constraints[constraintName] = {max: node.in};
+            this.totalMaxIn += node.in;
+            this.variables[variableName] = {[constraintName]: 1, [node.name]: 1, in: 1};
+            this.ints[constraintName] = 1;
+        }
+        if ("out" in node) {
+            let variableName = "b" + node.name
+            let constraintName = variableName + "out";
+            this.constraints[constraintName] = {max: node.out};
+            this.totalMaxOut += node.out;
+            this.variables[variableName] = {[constraintName]: 1, [node.name]: -1, out: 1};
+            this.ints[constraintName] = 1;
         }
     }
 

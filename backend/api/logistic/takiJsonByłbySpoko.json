@@ -2,33 +2,23 @@
   "nodes": [
     {
       "name": "1",
-      "inOut": {
-        "in": 250
-      }
+      "in": 250
     },
     {
       "name": "2",
-      "inOut": {
-        "in": 300
-      }
+      "in": 300
     },
     {
       "name": "3",
-      "inOut": {
-        "out": 120
-      }
+      "out": 120
     },
     {
       "name": "4",
-      "inOut": {
-        "out": 250
-      }
+      "out": 250
     },
     {
       "name": "5",
-      "inOut": {
-        "out": 100
-      }
+      "out": 100
     },
     {
       "name": "6"
