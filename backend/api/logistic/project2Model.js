@@ -24,7 +24,7 @@ class Project2Model {
     node(node) {
         this.constraints[node.name] = {min: 0, max: 0};
         if ("in" in node) {
-            let variableName = "a" + node.name
+            let variableName = "in_" + node.name
             let constraintName = variableName + "in";
             this.constraints[constraintName] = {max: node.in};
             this.totalMaxIn += node.in;
@@ -32,7 +32,7 @@ class Project2Model {
             this.ints[constraintName] = 1;
         }
         if ("out" in node) {
-            let variableName = "b" + node.name
+            let variableName = "out_" + node.name
             let constraintName = variableName + "out";
             this.constraints[constraintName] = {max: node.out};
             this.totalMaxOut += node.out;
