@@ -1,6 +1,8 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {Wynik} from "../../wynik";
 import {Dane} from "../../dane";
+import {Wynik2} from "../../wynik2";
+import {Dane2} from "../../dane2";
 
 @Component({
   selector: 'app-result',
@@ -8,56 +10,16 @@ import {Dane} from "../../dane";
   styleUrls: ['./result.component.css']
 })
 export class ResultComponent implements OnInit {
-  @Input() result: Wynik = {
-    income: 0,
+  @Input() result: Wynik2 = {
     cost: 0,
-    transport: 0,
-    result: 0,
-    trans: {
-      d1_o1: 0,
-      d1_o2: 0,
-      d2_o1: 0,
-      d2_o2: 0,
-      d3_o1: 0,
-      d3_o2: 0
-    },
-    trans2: {
-      d1_o1: 0,
-      d1_o2: 0,
-      d2_o1: 0,
-      d2_o2: 0,
-      d3_o1: 0,
-      d3_o2: 0
-    }
+    in: [{}],
+    out: [{}],
+    arrows: [{}]
   };
 
-  @Input() oldData: Dane = {
-    pop: {
-      o1: 0,
-      o2: 0
-    },
-    pod: {
-      d1: 0,
-      d2: 0,
-      d3: 0
-    },
-    cenazak: {
-      d1: 0,
-      d2: 0,
-      d3: 0
-    },
-    cenasprz: {
-      o1: 0,
-      o2: 0
-    },
-    trans: {
-      d1_o1: 0,
-      d1_o2: 0,
-      d2_o1: 0,
-      d2_o2: 0,
-      d3_o1: 0,
-      d3_o2: 0
-    }
+  @Input() oldData: Dane2 = {
+    nodes: [{}],
+    arrows: [{}]
   };
 
   constructor() {

@@ -17,8 +17,7 @@ h2 {
 .content {
   background-color: #C56C86;
   color: whitesmoke;
-  font-family: "Gotham Book Regular";
-  height: 600px;
+
   margin: 47px;
   margin-bottom: 40px;
   border-radius: 15px;
@@ -34,7 +33,7 @@ h2 {
   height: 50px;
   width:300px;
   margin-top: 0;
-  margin-bottom: 100px;
+  margin-bottom: 10px;
   border-radius: 15px;
   color: whitesmoke;
   font-family: "Gotham Book Regular";
@@ -104,6 +103,22 @@ a:visited {
   left: 50%;
   margin-right: -50%;
   transform: translate(-50%, -50%);
+}
+
+.node-button {
+  background-color: #725A7A;
+  height: 30px;
+  width: 100px;
+  margin-top: 0;
+  border-radius: 15px;
+  color: whitesmoke;
+  font-family: "Gotham Book Regular";
+  font-weight: bolder;
+  font-size: 10px;
+  text-align: center;
+  border:none;
+  outline: 0;
+  transition: .2s;
 }
 
 /*background-color: #2a3950*/

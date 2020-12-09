@@ -1,8 +1,36 @@
 import {Component} from '@angular/core';
-import {Dane} from "../dane";
+// import {Dane} from "../dane";
 import {HttpClient} from "@angular/common/http";
-import {Wynik} from "../wynik";
+// import {Wynik} from "../wynik";
 import {Router} from "@angular/router";
+import {Dane2} from "../dane2";
+import {Wynik2} from "../wynik2";
+
+
+class Node {
+  constructor() {
+    this.name = '';
+    this.in = 0;
+    this.out = 0;
+  }
+  public name: string;
+  public in: number;
+  public out: number;
+}
+class Arrow {
+  constructor() {
+    this.from = '';
+    this.to = '';
+    this.cost = 0;
+    this.min = 0;
+    this.max = 0;
+  }
+  public from: string;
+  public to: string;
+  public cost: number;
+  public min: number;
+  public max: number;
+}
 
 @Component({
   selector: 'app-root',
@@ -15,143 +43,73 @@ export class AppComponent {
 
   title = 'Logistyka';
 
-  dane: Dane = {
-    pop: {
-      o1: 0,
-      o2: 0
-    },
-    pod: {
-      d1: 0,
-      d2: 0,
-      d3: 0
-    },
-    cenazak: {
-      d1: 0,
-      d2: 0,
-      d3: 0
-    },
-    cenasprz: {
-      o1: 0,
-      o2: 0
-    },
-    trans: {
-      d1_o1: 0,
-      d1_o2: 0,
-      d2_o1: 0,
-      d2_o2: 0,
-      d3_o1: 0,
-      d3_o2: 0
-    }
+  dane2: Dane2 ={
+    nodes: [{}],
+    arrows: [{}]
   };
+  dataNodesArray: Array<Node> = [];
+  dataArrowsArray: Array<Arrow> = [];
 
-  popyt1 = '';
-  popyt2 = '';
-  podaz1 = '';
-  liczba11 = '';
-  liczba12 = '';
-  podaz2 = '';
-  liczba21 = '';
-  liczba22 = '';
-  podaz3 = '';
-  liczba31 = '';
-  liczba32 = '';
-  cenazak1 = '';
-  cenazak2 = '';
-  cenazak3 = '';
-  cenasprz1 = '';
-  cenasprz2 = '';
+  nodes: any;
+  arrows: any;
+
 
   obliczone = false;
   done = false;
   showWarning = false;
 
-  wynik: Wynik = {
-    income: 0,
+  wynik2: Wynik2 = {
     cost: 0,
-    transport: 0,
-    result: 0,
-    trans: {
-      d1_o1: 0,
-      d1_o2: 0,
-      d2_o1: 0,
-      d2_o2: 0,
-      d3_o1: 0,
-      d3_o2: 0
-    },
-    trans2: {
-      d1_o1: 0,
-      d1_o2: 0,
-      d2_o1: 0,
-      d2_o2: 0,
-      d3_o1: 0,
-      d3_o2: 0
-    }
+    in: [{}],
+    out: [{}],
+    arrows: [{}]
   };
+  name = '';
+  in = '';
+  out = '';
+
   isComplete(){
     //xDDDD
-    if (this.popyt1 == '') return false;
-    if (this.popyt2 == '') return false;
-    if (this.podaz1 == '') return false;
-    if (this.liczba11 == '') return false;
-    if (this.liczba12 == '') return false;
-    if (this.podaz2 == '') return false;
-    if (this.liczba21 == '') return false;
-    if (this.liczba22 == '') return false;
-    if (this.podaz3 =='') return false;
-    if (this.liczba31 == '') return false;
-    if (this.liczba32 == '') return false;
-    if (this.cenazak1 == '') return false;
-    if (this.cenazak2 == '') return false;
-    if (this.cenazak3 == '') return false;
-    if (this.cenasprz1 == '') return false;
-    if (this.cenasprz2 == '') return false;
+    if (this.nodes == []) return false;
+    if (this.arrows == []) return false;
     return true;
     //xDDDD
+  }
+  addNode(){
+    this.dataNodesArray.push(new Node());
+    console.log(this.dataNodesArray);
+  }
+  deleteNode(){
+    this.dataNodesArray.pop();
+    console.log(this.dataNodesArray);
+  }
+  addArrow(){
+    this.dataArrowsArray.push(new Arrow());
+    console.log(this.dataArrowsArray);
+  }
+  deleteArrow(){
+    this.dataArrowsArray.pop();
+    console.log(this.dataArrowsArray);
   }
 
   calculate() {
     if (this.isComplete()) {
       this.showWarning = false;
-      this.dane = {
-        pop: {
-          o1: this.popyt1,
-          o2: this.popyt2
-        },
-        pod: {
-          d1: this.podaz1,
-          d2: this.podaz2,
-          d3: this.podaz3
-        },
-        cenazak: {
-          d1: this.cenazak1,
-          d2: this.cenazak2,
-          d3: this.cenazak3
-        },
-        cenasprz: {
-          o1: this.cenasprz1,
-          o2: this.cenasprz2
-        },
-        trans: {
-          d1_o1: this.liczba11,
-          d1_o2: this.liczba12,
-          d2_o1: this.liczba21,
-          d2_o2: this.liczba22,
-          d3_o1: this.liczba31,
-          d3_o2: this.liczba32
-        }
-
+      this.dane2 = {
+        nodes: this.dataNodesArray,
+        arrows: this.dataArrowsArray
       };
       this.obliczone = true;
       // @ts-ignore
-      this.http.get('http://localhost:6969/api/logistic?q=' + JSON.stringify(this.dane)).subscribe((data: Wynik) => {
-        this.wynik = data;
+      this.http.get('http://localhost:6969/api/logistic2?q=' + JSON.stringify(this.dane2)).subscribe((data: Wynik2) => {
+        this.wynik2 = data;
         setTimeout(() => {
           this.done = true;
         }, 1300);
       });
-      console.log('http://localhost:6969/api/logistic?q=' + JSON.stringify(this.dane));
+      console.log('http://localhost:6969/api/logistic2?q=' + JSON.stringify(this.dane2));
       setTimeout(() => {
-        console.log('wynik: ' + JSON.stringify(this.wynik));
+        console.log('wynik: ' + JSON.stringify(this.wynik2));
       }, 1000);
     } else {
       this.showWarning = true;

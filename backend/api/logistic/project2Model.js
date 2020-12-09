@@ -23,7 +23,7 @@ class Project2Model {
 
     node(node) {
         this.constraints[node.name] = {min: 0, max: 0};
-        if ("in" in node) {
+        if (node.in) {
             let variableName = "in_" + node.name
             let constraintName = variableName + "in";
             this.constraints[constraintName] = {max: node.in};
@@ -31,7 +31,7 @@ class Project2Model {
             this.variables[variableName] = {[constraintName]: 1, [node.name]: 1, in: 1};
             this.ints[constraintName] = 1;
         }
-        if ("out" in node) {
+        if (node.out) {
             let variableName = "out_" + node.name
             let constraintName = variableName + "out";
             this.constraints[constraintName] = {max: node.out};
@@ -42,13 +42,14 @@ class Project2Model {
     }
 
     arrow(arrow) {
-        let nodes = arrow.name.split("_");
+        let name = arrow.from+"_"+arrow.to;
+        let nodes = name.split("_");
         let constraintName = arrow.name + "c";
         this.constraints[constraintName] = {}
-        if ("min" in arrow) {
+        if (arrow.min) {
             this.constraints[constraintName].min = arrow.min;
         }
-        if ("max" in arrow) {
+        if (arrow.max) {
             this.constraints[constraintName].max = arrow.max;
         }
         this.variables[arrow.name] = {cost: arrow.cost, [nodes[0]]: -1, [nodes[1]]: 1, [constraintName]: 1};

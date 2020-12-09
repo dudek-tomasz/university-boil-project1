@@ -1,109 +1,77 @@
 <div class="container">
-    <div *ngIf="!obliczone; else fadeOutTitle" class="title animate__animated animate__fadeIn" role="banner">
-      <h1>Badania Operacyjne i Logistyka</h1>
-      <h2>Zagadnienie pośrednika</h2>
-    </div>
+  <div *ngIf="!obliczone; else fadeOutTitle" class="title animate__animated animate__fadeIn" role="banner">
+    <h1>Badania Operacyjne i Logistyka</h1>
+  </div>
   <ng-template #fadeOutTitle>
     <div class="title animate__animated animate__fadeOutUp">
       <h1>Badania Operacyjne i Logistyka</h1>
-      <h2>Zagadnienie pośrednika</h2>
     </div>
   </ng-template>
 
-  <div *ngIf="!obliczone; else fadeOutContent" class="content" role="main">
+  <div *ngIf="!obliczone" class="content" role="main">
     <h3 class="animate__animated animate__fadeIn">Wypełnij tabele</h3>
-    <table class="table table-bordered table-responsive-md animate__animated animate__fadeIn">
-      <thead>
-      <tr>
-        <th colspan="2"></th>
-        <th scope="col">Odbiorca 1</th>
-        <th scope="col">Odbiorca 2</th>
-      </tr>
-      <tr>
-        <th scope="col" colspan="2" style="text-align: right">Podaz\Popyt</th>
-        <th scope="col">
-          <input type="number" class="form-control" placeholder="Popyt 1" id="popyt1" [(ngModel)]="popyt1" required>
-        </th>
-        <th scope="col">
-          <input type="number" class="form-control" placeholder="Popyt 2" id="popyt2" [(ngModel)]="popyt2" required>
-        </th>
-        <th scope="col" style="text-align: right">Kupno</th>
-      </tr>
-      </thead>
-      <tbody>
-      <tr>
-        <th scope="row">Dostawca 1</th>
-        <td>
-          <input type="number" class="form-control" placeholder="Podaz 1" id="podaz1" [(ngModel)]="podaz1" required>
-        </td>
-        <td>
-          <input type="number" class="form-control" placeholder="Liczba 1->1" id="liczba11" [(ngModel)]="liczba11"
-                 required>
-        </td>
-        <td>
-          <input type="number" class="form-control" placeholder="Liczba 1->2" id="liczba12" [(ngModel)]="liczba12"
-                 required>
-        </td>
-        <td>
-          <input type="number" class="form-control" placeholder="Cena 1" id="cenazak1" [(ngModel)]="cenazak1" required>
-        </td>
-      </tr>
-      <tr>
-        <th scope="row">Dostawca 2</th>
-        <td>
-          <input type="number" class="form-control" placeholder="Podaz 2" id="podaz2" [(ngModel)]="podaz2" required>
-        </td>
-        <td>
-          <input type="number" class="form-control" placeholder="Liczba 2->1" id="liczba21" [(ngModel)]="liczba21"
-                 required>
-        </td>
-        <td>
-          <input type="number" class="form-control" placeholder="Liczba 2->2" id="liczba22" [(ngModel)]="liczba22"
-                 required>
-        </td>
-        <td>
-          <input type="number" class="form-control" placeholder="Cena 2" id="cenazak2" [(ngModel)]="cenazak2" required>
-        </td>
-      </tr>
-      <tr>
-        <th scope="row">Dostawca 3</th>
-        <td>
-          <input type="number" class="form-control" placeholder="Podaz 3" id="podaz3" [(ngModel)]="podaz3" required>
-        </td>
-        <td>
-          <input type="number" class="form-control" placeholder="Liczba 3->1" id="liczba31" [(ngModel)]="liczba31"
-                 required>
-        </td>
-        <td>
-          <input type="number" class="form-control" placeholder="Liczba 3->2" id="liczba32" [(ngModel)]="liczba32"
-                 required>
-        </td>
-        <td>
-          <input type="number" class="form-control" placeholder="Cena 3" id="cenazak3" [(ngModel)]="cenazak3" required>
-        </td>
-      </tr>
-      <tr>
-        <th scope="row">Sprzedaz</th>
-        <td>
-        </td>
-        <td>
-          <input type="number" class="form-control" placeholder="Cena 1" id="cenasprz1" [(ngModel)]="cenasprz1"
-                 required>
-        </td>
-        <td>
-          <input type="number" class="form-control" placeholder="Cena 2" id="cenasprz2" [(ngModel)]="cenasprz2"
-                 required>
-        </td>
-        <td>
-        </td>
-      </tr>
-      </tbody>
-    </table>
+    <button class="node-button" type="submit" (click)="addNode()">
+      <div class="calculate-text">Dodaj node!</div>
+    </button>
+    <button class="node-button" type="submit" (click)="deleteNode()">
+      <div class="calculate-text">Usun node!</div>
+    </button>
+    <div>
+      <table class="table table-bordered table-responsive-md animate__animated animate__fadeIn" style="font-size: 15px">
+        <tr>
+          <th scope="col">Name</th>
+          <th scope="col">In</th>
+          <th scope="col">Out</th>
+        </tr>
+        <tr *ngFor="let node of dataNodesArray">
+          <th scope="col" style="text-align: right">
+            <input type="string" class="form-control" placeholder="" [(ngModel)]="node.name" required>
+          </th>
+          <th scope="col" style="text-align: right">
+            <input type="number" class="form-control" placeholder="" [(ngModel)]="node.in" required>
+          </th>
+          <th scope="col" style="text-align: right">
+            <input type="number" class="form-control" placeholder="" [(ngModel)]="node.out" required>
+          </th>
+        </tr>
+      </table>
+
+      <button class="node-button" type="submit" (click)="addArrow()">
+        <div class="calculate-text">Dodaj pol!</div>
+      </button>
+      <button class="node-button" type="submit" (click)="deleteArrow()">
+        <div class="calculate-text">Usun pol!</div>
+      </button>
+      <div>
+        <table class="table table-bordered table-responsive-md animate__animated animate__fadeIn" style="font-size: 15px">
+          <tr>
+            <th scope="col">From</th>
+            <th scope="col">To</th>
+            <th scope="col">Cost</th>
+            <th scope="col">Min</th>
+            <th scope="col">Max</th>
+          </tr>
+          <tr *ngFor="let arrow of dataArrowsArray">
+            <th scope="col" style="text-align: right">
+              <input type="string" class="form-control" placeholder="" [(ngModel)]="arrow.from" required>
+            </th>
+            <th scope="col" style="text-align: right">
+              <input type="string" class="form-control" placeholder="" [(ngModel)]="arrow.to" required>
+            </th>
+            <th scope="col" style="text-align: right">
+              <input type="number" class="form-control" placeholder="" [(ngModel)]="arrow.cost" required>
+            </th>
+            <th scope="col" style="text-align: right">
+              <input type="number" class="form-control" placeholder="" [(ngModel)]="arrow.min" required>
+            </th>
+            <th scope="col" style="text-align: right">
+              <input type="number" class="form-control" placeholder="" [(ngModel)]="arrow.max" required>
+            </th>
+          </tr>
+        </table>
+      </div>
   </div>
-  <ng-template #fadeOutContent>
-    <div class="content animate__animated animate__fadeOut">
-    </div>
-  </ng-template>
+
   <div *ngIf="obliczone&&!done" class="loading animate__animated animate__fadeIn animate__slow m-auto">
     <i class="fas fa-spinner fa-9x fa-spin"></i>
   </div>
@@ -113,12 +81,12 @@
   <button *ngIf="!obliczone && !done" class="calculate-button" type="submit" (click)="calculate()">
     <div class="calculate-text">Oblicz!</div>
   </button>
-<!--  <ng-template #fadeOutButton>-->
-<!--    <div class="calculate-button animate__animated animate__fadeOutDown">-->
-<!--      <div class="calculate-text">Oblicz!</div>-->
-<!--    </div>-->
-<!--  </ng-template>-->
-  <app-result *ngIf="obliczone && done" [result]="wynik" [oldData]="dane"></app-result>
+  <!--  <ng-template #fadeOutButton>-->
+  <!--    <div class="calculate-button animate__animated animate__fadeOutDown">-->
+  <!--      <div class="calculate-text">Oblicz!</div>-->
+  <!--    </div>-->
+  <!--  </ng-template>-->
+<!--  <app-result *ngIf="obliczone && done" [result]="wynik2" [oldData]="dane2"></app-result>-->
 </div>
 
 <!-- Footer -->

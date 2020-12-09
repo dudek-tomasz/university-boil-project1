@@ -1,0 +1,36 @@
+<div class="container">
+  <div *ngIf="!obliczone2; else fadeOutTitle" class="title animate__animated animate__fadeIn" role="banner">
+    <h1>Badania Operacyjne i Logistyka</h1>
+    <h2>Zagadnienie pośrednika</h2>
+  </div>
+  <ng-template #fadeOutTitle>
+    <div class="title animate__animated animate__fadeOutUp">
+      <h1>Badania Operacyjne i Logistyka</h1>
+      <h2>Zagadnienie pośrednika</h2>
+    </div>
+  </ng-template>
+
+  <div *ngIf="!obliczone2; else fadeOutContent" class="content" role="main">
+    <h3 class="animate__animated animate__fadeIn">Wypełnij tabele</h3>
+
+  </div>
+  <ng-template #fadeOutContent>
+    <div class="content animate__animated animate__fadeOut">
+    </div>
+  </ng-template>
+  <div *ngIf="obliczone&&!done" class="loading animate__animated animate__fadeIn animate__slow m-auto">
+    <i class="fas fa-spinner fa-9x fa-spin"></i>
+  </div>
+  <div *ngIf="showWarning" style="color:red; position: absolute; text-align: center;">
+    Dane są niekompletne
+  </div>
+  <button *ngIf="!obliczone && !done" class="calculate-button" type="submit" (click)="calculate()">
+    <div class="calculate-text">Oblicz!</div>
+  </button>
+  <!--  <ng-template #fadeOutButton>-->
+  <!--    <div class="calculate-button animate__animated animate__fadeOutDown">-->
+  <!--      <div class="calculate-text">Oblicz!</div>-->
+  <!--    </div>-->
+  <!--  </ng-template>-->
+  <app-result *ngIf="obliczone && done" [result]="wynik" [oldData]="dane"></app-result>
+</div>
