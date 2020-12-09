@@ -54,16 +54,16 @@ module.exports = function (router) {
         model.arrows(parsedData.arrows)
         model.build()
         let solverData = solver.Solve(model)
-        let result = {cost: solverData.result, in: {}, out: {}, arrows: {}};
+        let result = {cost: solverData.result, in: [], out: [], arrows: []};
         for (const [key, value] of Object.entries(solverData)) {
             let keyPair = key.split("_");
             if (keyPair.length > 1) {
                 if (keyPair[0] === "in") {
-                    result.in[keyPair[1]] = value
+                    result.in.push({[keyPair[1]]: value})
                 } else if (keyPair[0] === "out") {
-                    result.out[keyPair[1]] = value
+                    result.out.push({[keyPair[1]]: value})
                 } else {
-                    result.arrows[key] = value
+                    result.arrows.push({[key]: value})
                 }
             }
         }
