@@ -44,7 +44,7 @@ class Project2Model {
     arrow(arrow) {
         let name = arrow.from+"_"+arrow.to;
         let nodes = name.split("_");
-        let constraintName = arrow.name + "c";
+        let constraintName = name + "c";
         this.constraints[constraintName] = {}
         if (arrow.min) {
             this.constraints[constraintName].min = arrow.min;
@@ -52,8 +52,8 @@ class Project2Model {
         if (arrow.max) {
             this.constraints[constraintName].max = arrow.max;
         }
-        this.variables[arrow.name] = {cost: arrow.cost, [nodes[0]]: -1, [nodes[1]]: 1, [constraintName]: 1};
-        this.ints[arrow.name] = 1;
+        this.variables[name] = {cost: arrow.cost, [nodes[0]]: -1, [nodes[1]]: 1, [constraintName]: 1};
+        this.ints[name] = 1;
     }
 
     build() {
