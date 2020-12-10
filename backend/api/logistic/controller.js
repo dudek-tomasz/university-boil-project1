@@ -59,11 +59,11 @@ module.exports = function (router) {
             let keyPair = key.split("_");
             if (keyPair.length > 1) {
                 if (keyPair[0] === "in") {
-                    result.in.push({[keyPair[1]]: value})
+                    result.in.push({name: keyPair[1], value: value})
                 } else if (keyPair[0] === "out") {
-                    result.out.push({[keyPair[1]]: value})
+                    result.out.push({name: keyPair[1], value: value})
                 } else {
-                    result.arrows.push({[key]: value})
+                    result.arrows.push({connection: key, value: value})
                 }
             }
         }
